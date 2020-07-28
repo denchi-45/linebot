@@ -56,7 +56,7 @@ def handle_message(event):
         return
     
     elif event.message.text == "ごめんね":
-        line_bot_api.reply_massage(event.reply_token, TextSendMessage("いいよ"))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage("うっうっ"))
 
     # オウム返し
     line_bot_api.reply_message(
