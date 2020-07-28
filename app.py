@@ -40,10 +40,11 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    
-    if event.messege.text == "必要ない":
+
+    # 退出処理
+    if event.message.text == "帰って":
         line_bot_api.reply_message(event.reply_token, TextSendMessage("うっうっ"))
-        
+
         #グループトークからの退出処理
         if hasattr(event.source,"group_id"):
             line_bot_api.leave_group(event.source.group_id)
@@ -51,13 +52,15 @@ def handle_message(event):
         #ルームからの退出処理
         if hasattr(event.source,"room_id"):
             line_bot_api.leave_room(event.source.room_id)
+
+        return
+
+    # オウム返し
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=event.message.text))
     
-    else:
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=event.message.text))
-
-
+    
 if __name__ == "__main__":
 #    app.run()
     port = int(os.getenv("PORT", 5000))
