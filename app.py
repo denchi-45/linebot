@@ -54,6 +54,9 @@ def handle_message(event):
             line_bot_api.leave_room(event.source.room_id)
 
         return
+    
+    elif event.message.text == "ごめんね":
+        line_bot_api.reply_massage(event.reply_token, TextSendMessage("いいよ"))
 
     # オウム返し
     line_bot_api.reply_message(
