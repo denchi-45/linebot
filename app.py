@@ -43,8 +43,16 @@ def handle_message(event):
     
     if event.messege.text == "必要ない":
         line_bot_api.reply_message(event.reply_token, TextSendMessage("うっうっ"))
+        
+        #グループトークからの退出処理
+        if hasattr(event.source,"group_id"):
+            line_bot_api.leave_group(event.source.group_id)
+
+        #ルームからの退出処理
+        if hasattr(event.source,"room_id"):
+            line_bot_api.leave_room(event.source.room_id)
     
-    else:   
+    else:
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=event.message.text))
