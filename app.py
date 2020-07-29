@@ -55,6 +55,8 @@ def response_message(event):
                                             f"Status Message: {status_msg}",
                                        actions=[MessageAction(label="成功", text="次は何を実装しましょうか？")]))
     
+    line_bot_api.reply_message(event.reply_token, messages=messages)
+    
 #    # 退出処理
 #    if event.message.text == "帰って":
 #        line_bot_api.reply_message(event.reply_token, TextSendMessage("うっうっ"))
