@@ -40,8 +40,8 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-
     
+
     # 退出処理
     if event.message.text == "帰って":
         line_bot_api.reply_message(event.reply_token, TextSendMessage("うっうっ"))
