@@ -41,6 +41,9 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     
+    profile = line_bot_api.get_profile(event.source.user_id)
+
+    status_msg = profile.status_message
 
     # 退出処理
     if event.message.text == "帰って":
@@ -57,7 +60,7 @@ def handle_message(event):
         return
     
     if event.message.text == "ごめんね":
-        line_bot_api.reply_message(event.reply_token, TextSendMessage("いいよ"))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(profile.user_id[:5]))
 
     # オウム返し
     line_bot_api.reply_message(
