@@ -60,7 +60,7 @@ def handle_message(event):
         return
     
     if event.message.text == "ごめんね":
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(profile.user_id))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(event.source.group_id))
 
     # オウム返し
     line_bot_api.reply_message(
